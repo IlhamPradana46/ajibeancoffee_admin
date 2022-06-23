@@ -19,12 +19,15 @@ class Dashboard extends CI_Controller{
     }
 
     function menu_list(){
+        $data['produk'] = $this->m_pemesanan->get_data('produk')->result();
         $this->load->view('v_header');
-        $this->load->view('v_menu');
+        $this->load->view('v_menu',$data);
         $this->load->view('v_footer');
     }
 
-    function tambah_menu(){
-
+    function add_menu(){
+        $this->load->view('v_header');
+        $this->load->view('v_addmenu');
+        $this->load->view('v_footer');
     }
 }

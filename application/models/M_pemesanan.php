@@ -22,6 +22,9 @@ function delete_data($where,$table) {
     $this->db->where($where);
     $this->db->delete($table);
 }
+function insert($data){
+    $this->db->insert('produk',$data);
+}
 
 }
 ?>
