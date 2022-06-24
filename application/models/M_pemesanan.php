@@ -22,9 +22,12 @@ function delete_data($where,$table) {
     $this->db->where($where);
     $this->db->delete($table);
 }
-function insert($data){
-    $this->db->insert('produk',$data);
-}
 
+function delete_image($where,$table)
+{
+    $this->db->where($where);
+    unlink("uploads/".$gambar);
+    $this->db->delete('table', array('id_produk' => $id_produk));
+}
 }
 ?>

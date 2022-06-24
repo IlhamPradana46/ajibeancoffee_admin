@@ -10,7 +10,8 @@
               <div class="card-body">
                <h5 class="card-title font-weight-bold"><?php echo $p->nama_produk ?></h5>
                <label class="card-text harga">Stok <?php echo $p->stok ?></label><br>
-               <label class="card-text harga">Rp.<?php echo $p->harga ?></label><br>
+               <label class="card-text harga">Rp. <?php echo number_format($p->harga, 2, ",", ".");?></label><br>
+               <button class="btn btn-success btn-outline-dark text-white">EDIT</button> <button class="btn btn-danger btn-outline-dark text-white">DELETE</button>
               </div>
             </div>
         </div>

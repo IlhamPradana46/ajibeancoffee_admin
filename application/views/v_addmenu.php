@@ -2,7 +2,7 @@
 <?php echo form_open_multipart(base_url().'produk/do_upload'); ?>
 		<div class="form-group">
 			<label for="nama">Nama Produk</label>
-			<input name="nama" type="text" class="form-control" id="nama" placeholder="Masukan nama menu">
+			<input name="nama" type="text" class="form-control" id="nama" placeholder="Input nama produk">
 		</div>
 		<div class="form-group">
 			<label for="stok">Stok</label>
