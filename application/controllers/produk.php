@@ -15,9 +15,9 @@ class Produk extends CI_Controller{
     public function do_upload(){
         $config['upload_path']          = 'upload/images';  // folder upload 
         $config['allowed_types']        = 'jpg|png'; // jenis file
-        $config['max_size']             = 15000;
-        $config['max_width']            = 700;
-        $config['max_height']           = 467;
+        $config['max_size']             = '15000';
+        $config['max_width']            = '700';
+        $config['max_height']           = '467';
 
         $this->load->library('upload', $config);
 
@@ -54,4 +54,51 @@ class Produk extends CI_Controller{
     $this->m_pemesanan->delete_data($id, 'id_produk','produk');
     redirect('dashboard/menu_list');
     }
+
+    public function update_produk()
+    {
+        $id   = $this->input->post('id_produk');
+        $nama = $this->input->post('nama');
+        $stok = $this->input->post('stok');
+        $harga = $this->input->post('harga');
+
+        $path = './upload/images/';
+
+        $where = array('id_produk' => $id );
+
+        // get foto
+        $config['upload_path'] = './upload/images';
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size'] = '15000';  //2MB max
+        $config['max_width'] = '700'; // pixel
+        $config['max_height'] = '467'; // pixel
+        $config['file_name'] = $_FILES['gambarbaru']['nama'];
+
+        $this->load->library('upload', $config);
+
+        $this->upload->initialize($config);
+
+            if (!empty($_FILES['gambarbaru']['nama'])) {
+                if ( $this->upload->do_upload('gambarbaru') ) {
+                    $gambar = $this->upload->data();
+                    $data = array(
+                                'nama_produk'       => $nama,
+                                'stok'              => $stok,
+                                'harga'             => $harga,
+                                'gambar'            => $gambar['file_name']
+                                );
+                // hapus foto pada direktori
+                @unlink($path.$this->input->post('gambarlama'));
+
+                $this->m_pemesanan->update_data($data,$where,'produk');
+                redirect('dashboard/menu_list');
+                }else {
+                die("gagal update");
+                }
+            }else {
+            echo "tidak masuk";
+            }
+
+    }
+
 }
