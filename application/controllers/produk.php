@@ -45,12 +45,13 @@ class Produk extends CI_Controller{
        }
     }
 
-    public function delete_group()
+    public function delete_produk($id)
     {
-            $id_produk = $this->input->post('id_produk');
-            $group_picture = $this->input->post('group_picture');
-
-            $this->group_model->delete_group($group_id, $group_picture);
-            redirect('product_group');
+    $data = $this->m_pemesanan->ambil_id_gambar($id);
+    // lokasi gambar berada
+    $path = './upload/images/';
+    @unlink($path.$data->gambar);// hapus data di folder dimana data tersimpan
+    $this->m_pemesanan->delete_data($id, 'id_produk','produk');
+    redirect('dashboard/menu_list');
     }
 }

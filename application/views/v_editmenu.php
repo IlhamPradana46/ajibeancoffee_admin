@@ -1,5 +1,5 @@
 <div class="container mt-5">
-<h1 class="text-center"><strong>TAMBAH PRODUK</strong></h1>
+<h1 class="text-center"><strong>EDIT PRODUK</strong></h1>
 <?php echo form_open_multipart(base_url().'produk/do_upload'); ?>
 		<div class="form-group">
 			<label for="nama">Nama Produk</label>

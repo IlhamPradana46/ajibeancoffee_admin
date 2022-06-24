@@ -30,4 +30,11 @@ class Dashboard extends CI_Controller{
         $this->load->view('v_addmenu');
         $this->load->view('v_footer');
     }
+
+    function edit_produk(){
+        $data['produk'] = $this->m_pemesanan->get_data('produk')->result();
+        $this->load->view('v_header');
+        $this->load->view('v_editmenu',$data);
+        $this->load->view('v_footer');
+    }
 }
