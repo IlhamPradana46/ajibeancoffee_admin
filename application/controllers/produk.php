@@ -72,13 +72,13 @@ class Produk extends CI_Controller{
         $config['max_size'] = '15000';  //2MB max
         $config['max_width'] = '700'; // pixel
         $config['max_height'] = '467'; // pixel
-        $config['file_name'] = $_FILES['gambarbaru']['nama'];
+        $config['file_name'] = $_FILES['gambarbaru']['name'];
 
         $this->load->library('upload', $config);
 
         $this->upload->initialize($config);
 
-            if (!empty($_FILES['gambarbaru']['nama'])) {
+            if (!empty($_FILES['gambarbaru']['name'])) {
                 if ( $this->upload->do_upload('gambarbaru') ) {
                     $gambar = $this->upload->data();
                     $data = array(
@@ -90,9 +90,10 @@ class Produk extends CI_Controller{
                 // hapus foto pada direktori
                 @unlink($path.$this->input->post('gambarlama'));
 
-                $this->m_pemesanan->update_data($data,$where,'produk');
-                redirect('dashboard/menu_list');
-                }else {
+                $this->m_pemesanan->update_data($where,$data,'produk');
+                // var_dump($data);
+                redirect('dashboard/menu_list',$data);
+                }   else {
                 die("gagal update");
                 }
             }else {

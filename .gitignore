@@ -6,6 +6,8 @@ application/cache/*
 application/logs/*
 !application/logs/index.html
 
+asset/test/*
+
 composer.lock
 tests/mocks/database/ci_test.sqlite
 
