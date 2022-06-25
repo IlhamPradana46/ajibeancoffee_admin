@@ -5,43 +5,45 @@
     TAMBAH DAFTAR MENU
     </button>
 
-    <!-- Modal -->
+    <!-- Modal Tambah -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1><strong>TAMBAH PRODUK</strong></h1>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <?php echo form_open_multipart(base_url().'produk/do_upload'); ?>
-                <div class="form-group">
-                    <label for="nama">Nama Produk</label>
-                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Input nama produk">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1><strong>TAMBAH PRODUK</strong></h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="stok">Stok</label>
-                    <input name="stok" type="number" class="form-control" id="stok">
-                </div>
-                <div class="form-group">
-                    <label for="harga">Harga</label>
-                    <input name="harga" type="number" class="form-control" id="harga">
-                </div>
-                <div class="form-group">
-                    <label for="gambar">Gambar</label>
-                    <input name="gambar" type="file" class="form-control-file" id="file">
-                </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                    <input class="btn btn-primary btn-outline-light" type="submit" value="SIMPAN">
-                </div>
-        <?php echo form_close() ?>
+            <div class="modal-body">
+                <?php echo form_open_multipart(base_url().'produk/do_upload'); ?>
+                    <div class="form-group">
+                        <label for="nama">Nama Produk</label>
+                        <input name="nama" type="text" class="form-control" id="nama" placeholder="Input nama produk">
+                    </div>
+                    <div class="form-group">
+                        <label for="stok">Stok</label>
+                        <input name="stok" type="number" class="form-control" id="stok">
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">Harga</label>
+                        <input name="harga" type="number" class="form-control" id="harga">
+                    </div>
+                    <div class="form-group">
+                        <label for="gambar">Gambar</label>
+                        <input name="gambar" type="file" class="form-control-file" id="file">
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                        <input class="btn btn-primary btn-outline-light" type="submit" value="SIMPAN">
+                    </div>
+            <?php echo form_close() ?>
+            </div>
         </div>
     </div>
-    </div>
+    <!-- End Modal Tambah -->
+
     <div class="row mt-3">
     <?php foreach($produk as $p){	?>
         <div class="col-md-3 mt-3">
@@ -57,47 +59,49 @@
         </div>
     <?php } ?>
     </div>
+        <!-- Modal Ubah -->
         <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1><strong>EDIT PRODUK</strong></h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1><strong>EDIT PRODUK</strong></h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php foreach($produk as $p){	?>
+                        <?php echo form_open_multipart(base_url().'produk/update_produk'); ?>
+                            <input type="hidden" name="id_produk" value="<?=$p->id_produk?>">
+                            <div class="form-group">
+                                <label for="nama">Nama Produk</label>
+                                <input name="nama" type="text" class="form-control" id="nama" placeholder="Input nama produk" value="<?=$p->nama_produk?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="stok">Stok</label>
+                                <input name="stok" type="number" class="form-control" id="stok" value="<?=$p->stok?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="harga">Harga</label>
+                                <input name="harga" type="number" class="form-control" id="harga" value="<?=$p->harga?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="gambar">Gambar</label>
+                                <input name="gambarbaru" type="file" class="form-control-file" id="file">
+                            </div>
+                            <!-- file lama -->
+                            <input type="hidden" name="gambarlama" value="<?=$p->gambar?>">
+                            </div>
+                            <!-- <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                                <input class="btn btn-primary btn-outline-light" type="submit" value="SIMPAN">
+                            </div> -->
+                        <?php echo form_close() ?>
+                    <?php } ?>
+                </div>
             </div>
-            <div class="modal-body">
-                <?php foreach($produk as $p){	?>
-                <?php echo form_open_multipart(base_url().'produk/update_produk'); ?>
-                    <input type="hidden" name="id_produk" value="<?=$p->id_produk?>">
-                    <div class="form-group">
-                        <label for="nama">Nama Produk</label>
-                        <input name="nama" type="text" class="form-control" id="nama" placeholder="Input nama produk" value="<?=$p->nama_produk?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="stok">Stok</label>
-                        <input name="stok" type="number" class="form-control" id="stok" value="<?=$p->stok?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="harga">Harga</label>
-                        <input name="harga" type="number" class="form-control" id="harga" value="<?=$p->harga?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="gambar">Gambar</label>
-                        <input name="gambarbaru" type="file" class="form-control-file" id="file">
-                    </div>
-                    <!-- file lama -->
-                    <input type="hidden" name="gambarlama" value="<?=$p->gambar?>">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                        <input class="btn btn-primary btn-outline-light" type="submit" value="SIMPAN">
-                    </div>
-                <?php echo form_close() ?>
-            <?php } ?>
         </div>
-        </div>
-        </div>
+        <!-- End Modal Ubah -->
     </div>
     </div>
 <br>
