@@ -40,6 +40,9 @@
           <li class="nav-item">
             <a class="nav-link mr-4" href="<?php echo base_url().'welcome/logout'; ?>"><img src="<?php echo base_url().'asset/image/logout.png'; ?>" alt="" style="width:20px;height:20px;"> LOGOUT</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link mr-4" href="<?php echo base_url().'cart'; ?>"><img src="<?php echo base_url().'asset/image/logout.png'; ?>" alt="" style="width:20px;height:20px;"> LOGOUT</a>
+          </li>
         </ul>
       </div>
      </div> 
