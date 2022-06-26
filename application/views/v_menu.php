@@ -5,6 +5,8 @@
         TAMBAH DAFTAR MENU
         </button>
 
+        <a href="<?= base_url().'produk/view_cart' ?>" class="btn btn-warning mt-3">Add to cart</a>
+
     <!-- Modal Tambah -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
