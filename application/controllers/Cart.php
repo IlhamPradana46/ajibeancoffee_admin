@@ -12,19 +12,7 @@ class Cart extends CI_Controller{
     }
 
 	function index(){
-		$data['produk']=$this->m_pemesanan->get_data('produk')->result();
-		$this->load->view('v_kasir',$data);
-	}
-
-	function add_to_cart(){ //fungsi Add To Cart
-		$data = array(
-			'id' => $this->input->post('id_produk'), 
-			'name' => $this->input->post('nama_produk'), 
-			'price' => $this->input->post('harga'), 
-			'qty' => $this->input->post('quantity'), 
-		);
-		$this->cart->insert($data);
-		echo $this->show_cart(); //tampilkan cart setelah added
+		
 	}
 
 	function show_cart(){ //Fungsi untuk menampilkan Cart

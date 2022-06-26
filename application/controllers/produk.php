@@ -10,6 +10,8 @@ class Produk extends CI_Controller{
         if($this->session->userdata('status') !="login"){
             redirect(base_url().'Welcome?pesan=belumlogin');
         }
+
+        $this->load->library('cart');
     }
 
     public function do_upload(){
@@ -101,5 +103,53 @@ class Produk extends CI_Controller{
             }
 
     }
+
+    function view_cart(){
+        $data['produk']=$this->m_pemesanan->get_data('produk')->result();
+		$this->load->view('v_kasir',$data);
+    }
+
+    function add_cart(){ 
+        //ambil produk berdasarkan id 
+		$data = array(
+			'id' => $this->input->post('id_produk'), 
+			'name' => $this->input->post('nama_produk'), 
+			'price' => $this->input->post('harga'), 
+			'qty' => $this->input->post('quantity'), 
+		);
+
+		$this->cart->insert($data);
+
+        echo $this->show_cart(); 
+	}
+
+    function show_cart(){ 
+		$output = '';
+		$no = 0;
+		foreach ($this->cart->contents() as $items) {
+			$no++;
+			$output .='
+				<tr>
+					<td>'.$items['name'].'</td>
+					<td>'.number_format($items['price']).'</td>
+					<td>'.$items['qty'].'</td>
+					<td>'.number_format($items['subtotal']).'</td>
+					<td><button type="button" id="'.$items['rowid'].'" class="hapus_cart btn btn-danger btn-sm">Cancel</button></td>
+				</tr>
+			';
+		}
+		$output .= '
+			<tr>
+				<th colspan="3">Total</th>
+				<th colspan="2">'.'Rp '.number_format($this->cart->total()).'</th>
+			</tr>
+		';
+		return $output;
+	}
+
+    function load_cart(){ 
+		echo $this->show_cart();
+	}
+
 
 }

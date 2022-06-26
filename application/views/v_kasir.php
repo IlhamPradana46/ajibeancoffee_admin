@@ -30,7 +30,7 @@
 								    </div>
                                 </div>
                                 <br>
-                                <button class="add_cart btn btn-success btn-block" data-produkid="<?php echo $p->id_produk;?>" data-produknama="<?php echo $p->nama_produk;?>" data-produkharga="<?php echo $p->harga;?>">Add To Cart</button>
+                                <button class="add_cart btn btn-success btn-block" data-idproduk="<?php echo $p->id_produk;?>" data-namaproduk="<?php echo $p->nama_produk;?>" data-harga="<?php echo $p->harga;?>">Add To Cart</button>
                             </div>
                         </div>
                     </div>
@@ -62,22 +62,24 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.add_cart').click(function(){
-			var produk_id    = $(this).data("id_produk");
-			var produk_nama  = $(this).data("nama_produk");
-			var produk_harga = $(this).data("harga");
+			var id_produk    = $(this).data("idproduk");
+			var nama_produk  = $(this).data("namaproduk");
+			var harga 		 = $(this).data("harga");
 			var quantity     = $('#' + id_produk).val();
+
 			$.ajax({
-				url : "<?php echo base_url();?>index.php/cart/add_to_cart",
+				url : "<?= base_url().'produk/add_cart' ?>",
 				method : "POST",
-				data : {id_produk: produk_id, nama_produk: produk_nama, harga: produk_harga, quantity: quantity},
+				data : {id_produk: id_produk, nama_produk: nama_produk, harga: harga, quantity: quantity},
 				success: function(data){
 					$('#detail_cart').html(data);
+
 				}
 			});
 		});
 
 		// Load shopping cart
-		$('#detail_cart').load("<?php echo base_url();?>index.php/cart/load_cart");
+		$('#detail_cart').load("<?php echo base_url();?>/produk/load_cart");
 
 		//Hapus Item Cart
 		$(document).on('click','.hapus_cart',function(){
