@@ -4,13 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  
   <link rel="stylesheet" href="<?php echo base_url().'asset/css/bootstrap.min.css' ?>">
   <link rel="stylesheet" href="<?php echo base_url().'asset/css/index.css' ?>">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/913d7811ef.js" crossorigin="anonymous"></script>
-
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#tabeluser').DataTable();
+  });
+  </script>
+  
   <title>AJIBean Coffee</title>
   </head>
   <body>
@@ -32,16 +39,13 @@
             <a class="nav-link mr-4" href="<?php echo base_url().'dashboard'; ?>"><img src="<?php echo base_url().'asset/image/home.png'; ?>" alt="" style="width:20px;height:20px;"> HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mr-4" href="<?php echo base_url().'dashboard/menu_list'; ?>"><img src="<?php echo base_url().'asset/image/menu.png'; ?>" alt="" style="width:20px;height:20px;"> DAFTAR MENU</a>
+            <a class="nav-link mr-4" href="<?php echo base_url().'dashboard/menu_list'; ?>"><img src="<?php echo base_url().'asset/image/menu.png'; ?>" alt="" style="width:20px;height:20px;"> DAFTAR PRODUK</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mr-4" href="pesanan.html"><img src="<?php echo base_url().'asset/image/dp.png'; ?>" alt="" style="width:20px;height:20px;"> PESANAN</a>
+            <a class="nav-link mr-4" href="<?php echo base_url().'dashboard/transaksi'; ?>"><img src="<?php echo base_url().'asset/image/dp.png'; ?>" alt="" style="width:20px;height:20px;"> TRANSAKSI</a>
           </li>
           <li class="nav-item">
             <a class="nav-link mr-4" href="<?php echo base_url().'welcome/logout'; ?>"><img src="<?php echo base_url().'asset/image/logout.png'; ?>" alt="" style="width:20px;height:20px;"> LOGOUT</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mr-4" href="<?php echo base_url().'cart'; ?>"><img src="<?php echo base_url().'asset/image/logout.png'; ?>" alt="" style="width:20px;height:20px;"> LOGOUT</a>
           </li>
         </ul>
       </div>

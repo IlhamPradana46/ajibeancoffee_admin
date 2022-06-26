@@ -1,14 +1,12 @@
 <body>
-<div class="container" style="">
+<div class="container">
     <div class="container">
-        <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#exampleModal">
-        TAMBAH DAFTAR MENU
+        <button type="button" class="btn btn-success btn-sm mt-3" data-toggle="modal" data-target="#tambahitem">
+        <i class="fa-solid fa-plus" style="color:white;"></i> Tambah
         </button>
 
-        <a href="<?= base_url().'produk/view_cart' ?>" class="btn btn-warning mt-3">Add to cart</a>
-
     <!-- Modal Tambah -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tambahitem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -35,7 +33,7 @@
                         <label for="gambar">Gambar</label>
                         <input name="gambar" type="file" class="form-control-file" id="file">
                     </div>
-            </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
                         <input class="btn btn-primary btn-outline-light" type="submit" value="SIMPAN">
@@ -44,7 +42,6 @@
             </div>
         </div>
     </div>
-    <!-- End Modal Tambah -->
 
     <div class="row mt-3">
     <?php foreach($produk as $p){	?>
@@ -54,9 +51,9 @@
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold"><?php echo $p->nama_produk ?></h5>
                     <label class="card-text harga">Stok <?php echo $p->stok ?></label><br>
-                    <label class="card-text harga">Rp. <?php echo number_format($p->harga, 2, ",", ".");?></label><br>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalEdit<?= $p->id_produk ?>">Edit </button>
-                    <a href="<?php echo base_url().'produk/delete_produk/'.$p->id_produk; ?>" class="btn btn-danger btn-outline-dark text-white">DELETE</a>
+                    <label class="card-text harga">Rp.<?php echo number_format($p->harga, 2, ",", ".");?></label><br>
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalEdit<?= $p->id_produk ?>"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                    <a href="<?php echo base_url().'produk/delete_produk/'.$p->id_produk; ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can" style="color:white;"></i> Hapus</a>
                 </div>
             </div>
         </div>
@@ -64,7 +61,7 @@
     </div>
         <!-- Modal Ubah -->
         <?php $no = 0 ?>
-        <?php foreach ($produk as $p) : $no++ ?>
+        <?php foreach ($produk as $p) {?>
         <div class="modal fade" id="modalEdit<?= $p->id_produk; ?>" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -106,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <?php endforeach ?>
+        <?php }?>
         <!-- End Modal Ubah -->
     </div>
 </div>

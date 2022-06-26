@@ -25,19 +25,11 @@ class Dashboard extends CI_Controller{
         $this->load->view('v_footer');
     }
 
-    function add_menu(){
+    function transaksi(){
+        $data['produk'] = $this->m_pemesanan->get_data('produk')->result();
+        $data['transaksi'] = $this->db->query("select * from transaksi,produk where produk_transaksi=id_produk")->result();
         $this->load->view('v_header');
-        $this->load->view('v_addmenu');
-        $this->load->view('v_footer');
-    }
-
-    function edit_produk($id){
-        $where = array(
-            'id_produk' => $id
-        );
-        $data['produk'] = $this->m_pemesanan->edit_data($where,'produk')->result();
-        $this->load->view('v_header');
-        $this->load->view('v_editmenu',$data);
+        $this->load->view('v_transaksi',$data);
         $this->load->view('v_footer');
     }
 }
