@@ -19,7 +19,7 @@
                         <input name="customer" type="text" class="form-control" id="customer" placeholder="Masukan Nama Customer">
                     </div>
                     <div class="form-group">
-                        <label for="nama">Nama Produk</label>
+                        <label for="nama">Produk</label>
                         <select name="produk" class="form-control" id="nama">
                             <option value="">-Pilih Produk</option>
                             <?php foreach($produk as $p){ ?>
@@ -99,7 +99,7 @@
                                 <input name="customer" type="text" class="form-control" id="customer" value="<?= $t->nama_customer ?>" >
                             </div>  
                             <div class="form-group">
-                                <label for="namaproduk">Nama Produk</label>
+                                <label for="namaproduk">Produk</label>
                                 <select name="produk_transaksi_new" class="form-control" id="namaproduk">
                                     <option value="">-Pilih Produk</option>
                                     <?php foreach($produk as $p){ ?>

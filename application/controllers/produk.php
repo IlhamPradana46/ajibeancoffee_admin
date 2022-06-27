@@ -115,6 +115,7 @@ class Produk extends CI_Controller{
         $this->form_validation->set_rules('produk','Nama Produkr','required');
         $this->form_validation->set_rules('quantity','Jumlah','required');
 
+        
         if($this->form_validation->run() != false){
             $total_harga = $harga * $quantity;
             $stok_baru   = $stok - $quantity;
