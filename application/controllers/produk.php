@@ -165,7 +165,7 @@ class Produk extends CI_Controller{
     function update_transaksi(){
         $id = $this->input->post('id_transaksi');
         $nama_customer_new = $this->input->post('customer');
-        $produk_transaksi_new = $this->input->post('produk');
+        $produk_transaksi_new = $this->input->post('produk_transaksi_new');
         $quantity_new = $this->input->post('quantity');
         $produk_transaksi = $this->input->post('id_produk');
         $harga = $this->db->query("select harga from produk where id_produk=$produk_transaksi")->row()->harga;
@@ -173,7 +173,7 @@ class Produk extends CI_Controller{
         $quantity_old = $this->db->query("select quantity from transaksi where id_transaksi=$id")->row()->quantity;
 
         $this->form_validation->set_rules('customer','Nama Customer','required');
-        $this->form_validation->set_rules('produk','Nama Produkr','required');
+        $this->form_validation->set_rules('produk_transaksi_new','Nama Produkr','required');
         $this->form_validation->set_rules('quantity','Jumlah','required');
 
         if($this->form_validation->run() != false){
@@ -198,6 +198,7 @@ class Produk extends CI_Controller{
                 'stok' => $stok_new
             );
             $this->m_pemesanan->update_data($id_produk_new,$stok_update,'produk');
+
             $data = array(
                 'nama_customer' => $nama_customer_new,
                 'produk_transaksi' => $produk_transaksi_new,
@@ -207,7 +208,7 @@ class Produk extends CI_Controller{
             $this->m_pemesanan->update_data($where,$data,'transaksi');
             redirect(base_url().'dashboard/transaksi');
         } else{
-            echo 'Gagal';
+            echo 'Gagal update';
         }
     }
 }
