@@ -164,32 +164,43 @@ class Produk extends CI_Controller{
 
     function update_transaksi(){
         $id = $this->input->post('id_transaksi');
+        $produk_transaksi_old = $this->db->query("select produk_transaksi from transaksi where id_transaksi=$id")->row()->produk_transaksi;
         $nama_customer_new = $this->input->post('customer');
         $produk_transaksi_new = $this->input->post('produk_transaksi_new');
         $quantity_new = $this->input->post('quantity');
-        $produk_transaksi = $this->input->post('id_produk');
-        $harga = $this->db->query("select harga from produk where id_produk=$produk_transaksi")->row()->harga;
-        $stok = $this->db->query("select stok from produk where id_produk=$produk_transaksi")->row()->stok;
+        $harga = $this->db->query("select harga from produk where id_produk=$produk_transaksi_new")->row()->harga;
+        $stok = $this->db->query("select stok from produk where id_produk=$produk_transaksi_old")->row()->stok;
         $quantity_old = $this->db->query("select quantity from transaksi where id_transaksi=$id")->row()->quantity;
 
         $this->form_validation->set_rules('customer','Nama Customer','required');
-        $this->form_validation->set_rules('produk_transaksi_new','Nama Produkr','required');
+        $this->form_validation->set_rules('produk_transaksi_new','Nama Produk','required');
         $this->form_validation->set_rules('quantity','Jumlah','required');
 
         if($this->form_validation->run() != false){
             $total_harga = $harga * $quantity_new;
             $stok_old   = $stok + $quantity_old;
-            $stok_new = $stok_old - $quantity_new;
 
             $where = array('id_transaksi' => $id );
 
             $id_produk_old = array(
-                'id_produk' => $produk_transaksi
+                'id_produk' => $produk_transaksi_old
             );
             $stok_restore = array(
                 'stok' => $stok_old
             );
             $this->m_pemesanan->update_data($id_produk_old,$stok_restore,'produk');
+
+            $data = array(
+                'nama_customer' => $nama_customer_new,
+                'produk_transaksi' => $produk_transaksi_new,
+                'total_harga' => $total_harga,
+                'quantity' => $quantity_new,
+            );
+            $this->m_pemesanan->update_data($where,$data,'transaksi');
+
+            $stok = $this->db->query("select stok from produk where id_produk=$produk_transaksi_new")->row()->stok;
+
+            $stok_new = $stok - $quantity_new;
 
             $id_produk_new = array(
                 'id_produk' => $produk_transaksi_new
@@ -206,6 +217,7 @@ class Produk extends CI_Controller{
                 'quantity' => $quantity_new,
             );
             $this->m_pemesanan->update_data($where,$data,'transaksi');
+
             redirect(base_url().'dashboard/transaksi');
         } else{
             echo 'Gagal update';

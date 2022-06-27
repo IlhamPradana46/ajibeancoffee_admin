@@ -93,7 +93,6 @@
                     <div class="modal-body">
                         <!-- <?php //foreach($produk as $p){	?> -->
                         <?php echo form_open_multipart(base_url().'produk/update_transaksi'); ?>
-                            <input type="hidden" name="id_produk" id="id_produk" value="<?= $t->produk_transaksi ?>">
                             <input type="hidden" name="id_transaksi" id="id_transaksi" value="<?= $t->id_transaksi ?>">
                             <div class="form-group">
                                 <label for="customer">Nama Customer</label>
