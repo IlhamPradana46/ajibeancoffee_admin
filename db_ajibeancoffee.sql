@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2022 at 11:43 AM
+-- Generation Time: Jun 27, 2022 at 09:19 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -28,13 +28,49 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `produk` (
-  `id_menu` int(11) NOT NULL,
-  `nama_menu` varchar(20) NOT NULL,
-  `jenis_menu` varchar(10) NOT NULL,
+  `id_produk` int(11) NOT NULL,
+  `nama_produk` varchar(20) NOT NULL,
   `stok` varchar(3) NOT NULL,
   `harga` varchar(7) NOT NULL,
   `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga`, `gambar`) VALUES
+(68, 'kopi', '5', '1000', 'istockphoto-1163872551-612x612.jpg'),
+(69, 'kopi 2', '0', '2000', 'istockphoto-1163872551-612x6121.jpg'),
+(70, 'kopi 3', '0', '3000', 'istockphoto-1163872551-612x6122.jpg'),
+(71, 'kopi 4', '10', '2500', 'istockphoto-1163872551-612x6123.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id_transaksi` int(11) NOT NULL,
+  `tanggal_transaksi` datetime NOT NULL,
+  `total_harga` int(12) NOT NULL,
+  `produk_transaksi` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `nama_customer` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `tanggal_transaksi`, `total_harga`, `produk_transaksi`, `quantity`, `nama_customer`) VALUES
+(35, '2022-06-27 00:00:00', 5000, 67, 5, 'Ujang'),
+(36, '2022-06-27 00:00:00', 5000, 67, 5, 'Saipul'),
+(39, '2022-06-27 00:00:00', 15000, 70, 5, 'Ujang'),
+(40, '2022-06-27 00:00:00', 15000, 70, 5, 'Saipul'),
+(41, '2022-06-27 00:00:00', 5000, 68, 5, 'Asep'),
+(42, '2022-06-27 00:00:00', 20000, 69, 10, 'Mamat');
 
 -- --------------------------------------------------------
 
@@ -63,7 +99,13 @@ INSERT INTO `user` (`id`, `username`, `password`) VALUES
 -- Indexes for table `produk`
 --
 ALTER TABLE `produk`
-  ADD PRIMARY KEY (`id_menu`);
+  ADD PRIMARY KEY (`id_produk`);
+
+--
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indexes for table `user`
@@ -79,7 +121,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `user`

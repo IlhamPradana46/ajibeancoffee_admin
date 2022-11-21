@@ -18,10 +18,19 @@ function update_data($where,$data,$table) {
     $this->db->update($table,$data);
 }
 
-function delete_data($where,$table) {
-    $this->db->where($where);
+function delete_data($id,$where,$table) {
+    $this->db->where($where, $id);
     $this->db->delete($table);
 }
-
+function ambil_id_gambar($id)
+{
+    $this->db->from('produk');
+    $this->db->where('id_produk', $id);
+    $result = $this->db->get('');
+    // periksa ada datanya atau tidak
+    if ($result->num_rows() > 0) {
+      return $result->row();//ambil datanya berdasrka row id
+    }
+}
 }
 ?>

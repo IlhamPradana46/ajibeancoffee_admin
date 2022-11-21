@@ -9,7 +9,7 @@ body {
 
 /*Jumbotron*/
 .jumbotron {
-	background-image: url(../image/background/background.jpeg);
+	background-image: url(../image/background/background.png);
 	background-size: cover;
 	height: 350px;
 	width: 100%;
@@ -32,6 +32,28 @@ body {
 /*Akhir Jumbotron*/
 
 /*Navbar*/
+.form-control-1{
+	display: block;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	border-color: white !important;
+	border-style: solid !important;
+	border-width: 0 0 1px 0 !important;
+	padding: 0px !important;
+	color: white !important;
+	height: auto;
+	border-radius: 0;
+	background-color: rgba(0,0,0,0) !important;
+	background-clip: padding-box !important;
+}
+.border-solid{
+	border-style: solid;
+}
+.border-white-thick{
+	border-color:white; 
+	border-width: thick;
+}
 .fs-1 {
 	font-size: 10px;
 }
